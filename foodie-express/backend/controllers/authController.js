@@ -42,7 +42,12 @@ const registerUser = async (req, res) => {
       user: { id: user._id, name: user.name, email: user.email, phone: user.phone, role: user.role, profileImage: user.profileImage },
     });
   } catch (error) {
-    res.status(500).json({ success: false, message: "Server error during registration" });
+  console.error("Register error:", error);
+
+  res.status(500).json({
+    success: false,
+    message: error.message
+  });
   }
 };
 
